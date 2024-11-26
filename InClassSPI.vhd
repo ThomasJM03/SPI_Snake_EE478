@@ -5,11 +5,17 @@ use ieee.numeric_std.all;
 
 entity adc0181s021_spi is
       port ( 
+        --Clock on the Vivado board
         clk   : in std_logic;  --125MHz system clock
+        --UNKOWN
         cs_n  : out std_logic; --Active low chip select
+        --Slow clock they made in order to go to the module itself I am guessing
         sclk  : out std_logic; --Serial clock (1.25MHz)
+        --This is going to happen at differnt intervals and we need to understnad the sensor to become prophicent at this 
         sdata : in std_logic;  --Serial data from chip
+        --UNKNOWN
         sync  : in std_logic;  --Sync pulse to request new data
+        --UNKNOWNa
         data  : out std_logic_vector(7 downto 0) --Parallel 8 bit data out
       );
 end adc0181s021_spi;
