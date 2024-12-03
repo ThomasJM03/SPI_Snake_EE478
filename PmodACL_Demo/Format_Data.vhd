@@ -29,7 +29,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 --  ===================================================================================
 entity Format_Data is
     Port ( CLK : in  STD_LOGIC;
-			  DCLK : in STD_LOGIC;
+		   DCLK : in STD_LOGIC;
            RST : in  STD_LOGIC;
            DIN : in  STD_LOGIC_VECTOR (8 downto 0);
            BCDOUT : out  STD_LOGIC_VECTOR (11 downto 0));

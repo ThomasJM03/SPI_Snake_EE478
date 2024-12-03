@@ -1,13 +1,13 @@
 --////////////////////////////////////////////////////////////////////////////////
--- Company: Digilent Inc.
--- Engineer: Josh Sackos
+-- Company:  University at Buffalo
+-- Engineer: Thomas Mehok
 -- 
--- Create Date:    07/26/2012
+-- Create Date:    11/26/2024
 -- Module Name:    ClkDiv_5Hz
--- Project Name: 	 PmodACL_Demo
--- Target Devices: Nexys3
+-- Project Name:   SPI_Snake_EE478Final
+-- Target Devices: ZYBO-Z7
 -- Tool versions:  ISE 14.1
--- Description: Converts input 100MHz clock signal to a 5Hz clock signal.
+-- Description: Converts input 125MHz clock signal to a 5Hz clock signal.
 --
 -- Revision History: 
 -- 						Revision 0.01 - File Created (Josh Sackos)
@@ -22,7 +22,8 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 -- 										  Define Module
 -- ====================================================================================
 entity ClkDiv_5Hz is
-    Port ( CLK : in  STD_LOGIC;				-- 100MHz onboard clock
+    Port ( 
+		   CLK : in  STD_LOGIC;				-- 125MHz onboard clock
            RST : in  STD_LOGIC;				-- Reset
            CLKOUT : inout  STD_LOGIC);		-- New clock output
 end ClkDiv_5Hz;
@@ -34,9 +35,11 @@ architecture Behavioral of ClkDiv_5Hz is
 -- ====================================================================================
 
 			-- Current count value
-			signal clkCount : STD_LOGIC_VECTOR(23 downto 0) := (others => '0');
+			signal clkCount : STD_LOGIC_VECTOR(27 downto 0) := (others => '0');
+
 			-- Value to toggle output clock at
-			constant cntEndVal : STD_LOGIC_VECTOR(23 downto 0) := X"989680";
+			-- 25 M in hex
+			constant cntEndVal : STD_LOGIC_VECTOR(27 downto 0) := X"17D7840";
 
 --  ===================================================================================
 -- 							  				Implementation
@@ -46,16 +49,16 @@ begin
 			-------------------------------------------------
 			--	5Hz Clock Divider Generates Send/Receive signal
 			-------------------------------------------------
-			process(CLK, RST) begin
+			FIVEhzGenerator : process(CLK) begin
 
 					-- Reset clock
 					if(RST = '1')  then
 							CLKOUT <= '0';
-							clkCount <= X"000000";
+							clkCount <= (others => '0');
 					elsif rising_edge(CLK) then
 							if(clkCount = cntEndVal) then
 									CLKOUT <= NOT CLKOUT;
-									clkCount <= X"000000";
+									clkCount <= (others => '0');
 							else
 									clkCount <= clkCount + '1';
 							end if;

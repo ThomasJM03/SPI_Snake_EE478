@@ -7,7 +7,7 @@
 -- Project Name: 	 PmodACL_Demo
 -- Target Devices: Nexys3
 -- Tool versions:  ISE 14.1
--- Description: This module converts axis data from 2's compliment to its magnitude
+-- Description:      This module converts axis data from 2's compliment to its magnitude
 --					 representation.  Based upon the input switches SW(1) and SW(0) either
 --					 the x-axis, y-axis, or z-axis data will be output on the DOUT output.
 --
@@ -23,7 +23,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity sel_Data is
     Port ( CLK : in  STD_LOGIC;
            RST : in  STD_LOGIC;
-			  SW : in STD_LOGIC_VECTOR(1 downto 0);
+			SW : in STD_LOGIC_VECTOR(1 downto 0);
            xAxis : in  STD_LOGIC_VECTOR (9 downto 0);
            yAxis : in  STD_LOGIC_VECTOR (9 downto 0);
            zAxis : in  STD_LOGIC_VECTOR (9 downto 0);

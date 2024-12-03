@@ -40,7 +40,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --  								Define Module, Inputs and Outputs
 --  ===================================================================================
 entity SPIcomponent is
-    Port (  CLK : in  STD_LOGIC;
+    Port (  
+			CLK : in  STD_LOGIC;
 			RST : in  STD_LOGIC;
 			START : in STD_LOGIC;
             SDI : in  STD_LOGIC;
@@ -63,15 +64,16 @@ architecture Behavioral of SPIcomponent is
 		-- 		    Serial Port Interface RxTx
 		-- **********************************************
 		component SPIinterface 
-			 Port ( txbuffer : in  STD_LOGIC_VECTOR ( 15 downto 0 );
-					  rxbuffer : out  STD_LOGIC_VECTOR ( 7 downto 0 );
-					  transmit : in STD_LOGIC;
-					  done_out : out STD_LOGIC;
-					  sdi : in STD_LOGIC;
-					  sdo : out STD_LOGIC;
-					  rst : in STD_LOGIC;
-					  clk : in STD_LOGIC;
-					  sclk : out  STD_LOGIC);
+			 Port ( 
+					txbuffer : in  STD_LOGIC_VECTOR ( 15 downto 0 );
+					rxbuffer : out  STD_LOGIC_VECTOR ( 7 downto 0 );
+					transmit : in STD_LOGIC;
+					done_out : out STD_LOGIC;
+					sdi : in STD_LOGIC;
+					sdo : out STD_LOGIC;
+					rst : in STD_LOGIC;
+					clk : in STD_LOGIC;
+					sclk : out  STD_LOGIC);
 		end component;
 
 
@@ -79,16 +81,17 @@ architecture Behavioral of SPIcomponent is
 		-- 	Serial Port Interface Master Controller
 		-- **********************************************
 		component SPImaster
-			Port (  rst : in  STD_LOGIC;
-					  start : in  STD_LOGIC;
-					  transmit : out  STD_LOGIC;
-					  done : in STD_LOGIC;
-					  clk : in STD_LOGIC;
-					  txdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
-					  rxdata : in STD_LOGIC_VECTOR ( 7 downto 0 );
-					  x_axis_data : out STD_LOGIC_VECTOR ( 9 downto 0 );
-					  y_axis_data : out STD_LOGIC_VECTOR ( 9 downto 0 );
-					  z_axis_data : out STD_LOGIC_VECTOR ( 9 downto 0 )
+			Port (  
+					rst : in  STD_LOGIC;
+					start : in  STD_LOGIC;
+					transmit : out  STD_LOGIC;
+					done : in STD_LOGIC;
+					clk : in STD_LOGIC;
+					txdata : out STD_LOGIC_VECTOR ( 15 downto 0 );
+					rxdata : in STD_LOGIC_VECTOR ( 7 downto 0 );
+					x_axis_data : out STD_LOGIC_VECTOR ( 9 downto 0 );
+					y_axis_data : out STD_LOGIC_VECTOR ( 9 downto 0 );
+					z_axis_data : out STD_LOGIC_VECTOR ( 9 downto 0 )
 					  );
 		end component;
 
@@ -96,13 +99,14 @@ architecture Behavioral of SPIcomponent is
 		-- **********************************************
 		-- 			 Slave Select Controller
 		-- **********************************************
-		-- component slaveSelect
-		-- 	Port (  ss : out  STD_LOGIC;
-		-- 			  clk : in STD_LOGIC;
-		-- 			  done : in STD_LOGIC;
-		-- 			  transmit : in STD_LOGIC;
-		-- 			  rst : in STD_LOGIC);
-		-- end component;
+		component slaveSelect
+			Port (  
+					ss : out  STD_LOGIC;
+					clk : in STD_LOGIC;
+					done : in STD_LOGIC;
+					transmit : in STD_LOGIC;
+					rst : in STD_LOGIC);
+		end component;
 
 -- ====================================================================================
 -- 							       Signals and Constants

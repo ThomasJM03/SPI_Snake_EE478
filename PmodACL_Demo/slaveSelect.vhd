@@ -32,11 +32,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 --  								Define Module, Inputs and Outputs
 --  ===================================================================================
 entity slaveSelect is
-    Port (  rst : in STD_LOGIC;
-				clk : in STD_LOGIC;
-				transmit : in STD_LOGIC;
-				done : in STD_LOGIC;
-				ss : out  STD_LOGIC);
+    Port (  
+			rst : in STD_LOGIC;
+			clk : in STD_LOGIC;
+			transmit : in STD_LOGIC;
+			done : in STD_LOGIC;
+			ss : out  STD_LOGIC);
 end slaveSelect;
 
 architecture Behavioral of slaveSelect is
